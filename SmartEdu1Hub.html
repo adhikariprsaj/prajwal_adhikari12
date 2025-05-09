@@ -1,0 +1,463 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartEdu Hub</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fb;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4%;
+      background-color: white;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header h1 {
+      color: #3f51b5;
+      font-weight: bold;
+      margin: 0;
+      cursor: pointer;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .sign-in {
+      background-color: #5a4bff;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem 5%;
+      gap: 2rem;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+    .hero-text {
+      flex: 1;
+    }
+    .hero-text h2 {
+      font-size: 2.5rem;
+      color: #3f51b5;
+      margin-bottom: 1rem;
+    }
+    .hero-text h2 span {
+      color: #000;
+    }
+    .hero-text p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons button {
+      padding: 0.8rem 1.4rem;
+      margin-right: 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .hero-buttons .primary {
+      background-color: #5a4bff;
+      color: white;
+    }
+    .hero-buttons .secondary {
+      background-color: white;
+      border: 2px solid #5a4bff;
+      color: #5a4bff;
+    }
+    .hero-image {
+      flex: 1;
+      max-width: 50%;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .gateway-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 5%;
+      background: #f9faff;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .gateway-text {
+      flex: 1;
+      max-width: 600px;
+    }
+    .gateway-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .gateway-text h2 span {
+      color: #5a4bff;
+    }
+    .gateway-text p {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+    .features h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-box {
+      background-color: #5a4bff;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+    }
+    .features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .features ul li {
+      margin: 0.75rem 0;
+      font-size: 1rem;
+    }
+    .gateway-image {
+      flex: 1;
+      max-width: 500px;
+    }
+    .gateway-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #pricing {
+      background-color: #fff;
+      padding: 4rem 5%;
+      text-align: center;
+    }
+    #pricing h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    #pricing p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+    .billing-toggle {
+      margin-bottom: 2rem;
+    }
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .plan {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 300px;
+      background-color: #fdfdfd;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .plan h3 {
+      font-size: 1.25rem;
+      color: #333;
+    }
+    .plan .price {
+      font-size: 2rem;
+      margin: 1rem 0;
+      color: #3f51b5;
+    }
+    .plan ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 2rem 0;
+      text-align: left;
+    }
+    .plan ul li {
+      margin: 0.5rem 0;
+    }
+    .plan button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background-color: #5a4bff;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .most-popular::after {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #ff4081;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+
+     
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .modal-content .login-button {
+      background-color: #5a4bff;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .social-login {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .social-login button {
+      border: none;
+      padding: 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .google-btn {
+      background-color: #db4437;
+      color: white;
+    }
+    .facebook-btn {
+      background-color: #3b5998;
+      color: white;
+    }
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+ 
+    #contact {
+      padding: 4rem 5%;
+      background-color: #f8f9fb;
+      text-align: center;
+    }
+    #contact form {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    #contact button {
+      background-color: #5a4bff;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">SmartEdu Hub</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#">Resources</a>
+      <a href="#contact">Contact</a>
+      <button class="sign-in">Sign In</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Excel in <span>Competitive Exams</span> with <span>SmartEdu Hub</span></h2>
+      <p>Comprehensive practice tests and mock exams tailored specifically for Engineering License and Loksewa aspirants.</p>
+      <div class="hero-buttons">
+        <button class="primary">Start Free Trial</button>
+        <button class="secondary">Explore Plans</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1000&q=80" alt="Laptop image" />
+    </div>
+  </section>
+
+  <section id="features" class="gateway-section">
+    <div class="gateway-text">
+      <h2>Your Gateway to <span>Exam Success</span></h2>
+      <p>SmartEdu Hub is an online platform designed to help students prepare for competitive exams through curated mock tests and practice questions.</p>
+      <div class="features">
+        <h3><span class="highlight-box">Why Choose SmartEdu Hub?</span></h3>
+        <ul>
+          <li>✅ Curated mock tests aligned with actual exam standards</li>
+          <li>📊 Performance analytics to track your progress</li>
+          <li>📚 Structured content tailored for Engineering License and Loksewa exams</li>
+          <li>🧠 Practice questions designed by subject matter experts</li>
+          <li>📱 Mobile-friendly interface for studying anytime, anywhere</li>
+        </ul>
+        <p>👨‍🎓 Student preparing with SmartEdu Hub</p>
+      </div>
+    </div>
+    <div class="gateway-image">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" alt="Student with laptop in lab" />
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Affordable Pricing for Everyone</h2>
+    <p>Choose the plan that works for you. All paid plans include a 10-day risk-free trial.</p>
+    <div class="billing-toggle">
+      <button class="secondary">Monthly Billing</button>
+      <button class="secondary">Yearly Billing</button>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">Rs. 0</div>
+        <ul>
+          <li>Access to limited practice questions</li>
+          <li>Community support</li>
+          <li>Basic study materials</li>
+          <li>Mobile access</li>
+        </ul>
+        <button>Get Started</button>
+      </div>
+      <div class="plan most-popular">
+        <h3>Basic</h3>
+        <div class="price">Rs. 149<span style="font-size: 1rem;">/month</span></div>
+        <ul>
+          <li>All features in Free</li>
+          <li>Access to all mock tests</li>
+          <li>Performance analytics</li>
+          <li>Subject/topic-wise practice</li>
+          <li>Ad-free experience</li>
+        </ul>
+        <button>Start 10-Day Free Trial</button>
+      </div>
+      <div class="plan">
+        <h3>Ultimate</h3>
+        <div class="price">Rs. 399<span style="font-size: 1rem;">/month</span></div>
+        <ul>
+          <li>All features in Basic</li>
+          <li>Doubt support & explanations</li>
+          <li>Premium mock tests</li>
+          <li>Detailed solution guides</li>
+          <li>Priority support</li>
+        </ul>
+        <button>Start 10-Day Free Trial</button>
+      </div>
+    </div>
+    <p style="margin-top: 2rem;">Not sure which plan is right for you? Start with our free plan and upgrade anytime.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or need support? We'd love to hear from you.</p>
+    <form>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea placeholder="Your Message" rows="5"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div id="signInModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="toggleModal(false)">✖</button>
+      <h2>Sign In</h2>
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button class="login-button">Login</button>
+      <div class="social-login">
+        <button class="google-btn">Sign in with Google</button>
+        <button class="facebook-btn">Sign in with Facebook</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleModal(show) {
+      document.getElementById('signInModal').style.display = show ? 'block' : 'none';
+    }
+
+    document.querySelector('.sign-in').addEventListener('click', () => {
+      toggleModal(true);
+    });
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('signInModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+
+</body>
+</html>
